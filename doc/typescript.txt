@@ -183,3 +183,14 @@ Done.
 ## Now type './script/server.sh'
 ##
 
+
+
+tkrmb:~/demo/ruby-kaigi% cd lib 
+tkrmb:~/demo/ruby-kaigi/lib% git clone git://github.com/takeru/tiny_ds.git
+Initialized empty Git repository in /Users/takeru/demo/ruby-kaigi/lib/tiny_ds/.git/
+remote: Counting objects: 545, done.
+remote: Compressing objects: 100% (529/529), done.
+remote: Total 545 (delta 302), reused 0 (delta 0)
+Receiving objects: 100% (545/545), 86.99 KiB | 95 KiB/s, done.
+Resolving deltas: 100% (302/302), done.
+
