@@ -1,0 +1,185 @@
+% rvm use 1.8.7-p174@jruby20100806                                                                  
+info: Using ruby 1.8.7 p174 with gemset jruby20100806
+
+% rvm info
+ruby-1.8.7-p174@jruby20100806:
+
+  system:
+    uname:        "Darwin tkrmb.local 8.11.1 Darwin Kernel Version 8.11.1: Wed Oct 10 18:23:28 PDT 2007; root:xnu-792.25.20~1/RELEASE_I386 i386 i386"
+    shell:        "bash"
+    version:      "2.05b.0(1)-release"
+
+  rvm:
+    version:      "rvm 0.1.41 by Wayne E. Seguin (wayneeseguin@gmail.com) [http://rvm.beginrescueend.com/]"
+
+  ruby:
+    interpreter:  "ruby"
+    version:      "1.8.7"
+    date:         "2009-06-12"
+    platform:     "i686-darwin8.11.1"
+    patchlevel:   "2009-06-12 patchlevel 174"
+    full_version: "ruby 1.8.7 (2009-06-12 patchlevel 174) [i686-darwin8.11.1]"
+...
+
+% gem list
+
+*** LOCAL GEMS ***
+
+actionmailer (2.3.8)
+actionpack (2.3.8)
+activerecord (2.3.8)
+activerecord-nulldb-adapter (0.2.0)
+activeresource (2.3.8)
+activesupport (2.3.8)
+appengine-apis (0.0.18)
+appengine-rack (0.0.11)
+appengine-sdk (1.3.5)
+appengine-tools (0.0.15)
+bundler08 (0.8.5)
+google-appengine (0.0.15)
+jruby-jars (1.5.1)
+jruby-rack (1.0.2)
+rack (1.2.1, 1.1.0)
+rails (2.3.8)
+rails_tiny_ds (0.0.2.1)
+rake (0.8.7)
+rdoc (2.5.8)
+rubyzip (0.9.4)
+tiny_ds (0.0.2)
+
+
+tkrmb:~/demo/ruby-kaigi% ruby rails238_appengine.rb tiny_ds=> Bundling gems
+Calculating dependencies...
+Updating source: http://gems.rubyforge.org
+/Users/takeru/.rvm/gems/ruby-1.8.7-p174@jruby20100806/gems/bundler08-0.8.5/lib/bundler08/resolver.rb:115:Warning: Gem::Dependency#version_requirements is deprecated and will be removed on or after August 2010.  Use #requirement
+Caching: actionmailer-2.3.8.gem
+Caching: actionpack-2.3.8.gem
+Caching: activerecord-2.3.8.gem
+Caching: activeresource-2.3.8.gem
+Caching: activesupport-2.3.8.gem
+Caching: appengine-apis-0.0.18.gem
+Downloading appengine-rack-0.0.11.pre.gem
+Caching: jruby-jars-1.5.1.gem
+Downloading jruby-openssl-0.7.gem
+Downloading jruby-rack-1.0.3.gem
+Caching: rack-1.1.0.gem
+Caching: rails-2.3.8.gem
+Downloading rails_appengine-0.0.4.gem
+Caching: rails_tiny_ds-0.0.2.1.gem
+Caching: rake-0.8.7.gem
+Caching: tiny_ds-0.0.2.gem
+Installing activesupport (2.3.8)
+Installing actionmailer (2.3.8)
+Installing rails_appengine (0.0.4)
+Installing jruby-openssl (0.7)
+Installing jruby-jars (1.5.1)
+Installing rack (1.1.0)
+Installing actionpack (2.3.8)
+Installing rake (0.8.7)
+Installing jruby-rack (1.0.3)
+Installing appengine-rack (0.0.11.pre)
+Installing appengine-apis (0.0.18)
+Installing tiny_ds (0.0.2)
+Installing activerecord (2.3.8)
+Installing activeresource (2.3.8)
+Installing rails (2.3.8)
+Installing rails_tiny_ds (0.0.2.1)
+Done.
+=> Packaging gems
+=> Installing appengine-api-1.0-sdk-1.3.5.jar
+=> Installing appengine-api-labs-1.3.5.jar
+=> Installing appengine-rack.jar
+=> Installing jruby-core-1.5.1.jar
+=> Installing jruby-stdlib-1.5.1.jar
+=> Installing bcmail-jdk15-144.jar
+=> Installing bcprov-jdk15-144.jar
+=> Installing jopenssl.jar
+=> Installing jruby-rack-1.0.3.jar
+      exists  
+      create  app/controllers
+      create  app/helpers
+      create  app/models
+      create  app/views/layouts
+      create  config/environments
+      create  config/initializers
+      create  config/locales
+      create  db
+      exists  doc
+      create  lib
+      create  lib/tasks
+      create  log
+      create  public/images
+      create  public/javascripts
+      create  public/stylesheets
+      create  script/performance
+      create  test/fixtures
+      create  test/functional
+      create  test/integration
+      create  test/performance
+      create  test/unit
+      create  vendor
+      create  vendor/plugins
+      create  tmp/sessions
+      create  tmp/sockets
+      create  tmp/cache
+      create  tmp/pids
+      create  Rakefile
+      create  README
+      create  app/controllers/application_controller.rb
+      create  app/helpers/application_helper.rb
+      create  config/database.yml
+      create  config/routes.rb
+      create  config/locales/en.yml
+      create  db/seeds.rb
+      create  config/initializers/backtrace_silencers.rb
+      create  config/initializers/inflections.rb
+      create  config/initializers/mime_types.rb
+      create  config/initializers/new_rails_defaults.rb
+      create  config/initializers/session_store.rb
+      create  config/initializers/cookie_verification_secret.rb
+      create  config/environment.rb
+      create  config/boot.rb
+      create  config/environments/production.rb
+      create  config/environments/development.rb
+      create  config/environments/test.rb
+      create  script/about
+      create  script/console
+      create  script/dbconsole
+      create  script/destroy
+      create  script/generate
+      create  script/runner
+      create  script/server
+      create  script/plugin
+      create  script/performance/benchmarker
+      create  script/performance/profiler
+      create  test/test_helper.rb
+      create  test/performance/browsing_test.rb
+      create  public/404.html
+      create  public/422.html
+      create  public/500.html
+      create  public/index.html
+   identical  public/favicon.ico
+      create  public/robots.txt
+      create  public/images/rails.png
+      create  public/javascripts/prototype.js
+      create  public/javascripts/effects.js
+      create  public/javascripts/dragdrop.js
+      create  public/javascripts/controls.js
+      create  public/javascripts/application.js
+      create  doc/README_FOR_APP
+      create  log/server.log
+      create  log/production.log
+      create  log/development.log
+      create  log/test.log
++ ./LICENSE
++ ./README
++ ./Rakefile
++ ./init.rb
++ ./lib/active_record/connection_adapters/nulldb_adapter.rb
++ ./lib/nulldb_rspec.rb
++ ./spec/nulldb_spec.rb
++ ./tasks/database.rake
+##
+## Now type './script/server.sh'
+##
+
