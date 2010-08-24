@@ -1,3 +1,5 @@
+http://gist.github.com/269075
+
 % rvm use 1.8.7-p174@jruby20100806                                                                  
 info: Using ruby 1.8.7 p174 with gemset jruby20100806
 
@@ -21,34 +23,9 @@ ruby-1.8.7-p174@jruby20100806:
     full_version: "ruby 1.8.7 (2009-06-12 patchlevel 174) [i686-darwin8.11.1]"
 ...
 
-% gem list
 
-*** LOCAL GEMS ***
-
-actionmailer (2.3.8)
-actionpack (2.3.8)
-activerecord (2.3.8)
-activerecord-nulldb-adapter (0.2.0)
-activeresource (2.3.8)
-activesupport (2.3.8)
-appengine-apis (0.0.18)
-appengine-rack (0.0.11)
-appengine-sdk (1.3.5)
-appengine-tools (0.0.15)
-bundler08 (0.8.5)
-google-appengine (0.0.15)
-jruby-jars (1.5.1)
-jruby-rack (1.0.2)
-rack (1.2.1, 1.1.0)
-rails (2.3.8)
-rails_tiny_ds (0.0.2.1)
-rake (0.8.7)
-rdoc (2.5.8)
-rubyzip (0.9.4)
-tiny_ds (0.0.2)
-
-
-tkrmb:~/demo/ruby-kaigi% ruby rails238_appengine.rb tiny_ds=> Bundling gems
+tkrmb:~/demo/ruby-kaigi% ruby rails238_appengine.rb tiny_ds
+=> Bundling gems
 Calculating dependencies...
 Updating source: http://gems.rubyforge.org
 /Users/takeru/.rvm/gems/ruby-1.8.7-p174@jruby20100806/gems/bundler08-0.8.5/lib/bundler08/resolver.rb:115:Warning: Gem::Dependency#version_requirements is deprecated and will be removed on or after August 2010.  Use #requirement
@@ -193,4 +170,142 @@ remote: Compressing objects: 100% (529/529), done.
 remote: Total 545 (delta 302), reused 0 (delta 0)
 Receiving objects: 100% (545/545), 86.99 KiB | 95 KiB/s, done.
 Resolving deltas: 100% (302/302), done.
+
+
+
+
+tkrmb:~/demo/ruby-kaigi% rm WEB-INF/lib/gems.jar
+tkrmb:~/demo/ruby-kaigi% rm -rf .gems                                                      
+tkrmb:~/demo/ruby-kaigi% ./script/server.sh     
+=> Bundling gems
+Calculating dependencies...
+Updating source: http://gems.rubyforge.org
+/Users/takeru/.rvm/gems/ruby-1.8.7-p174@jruby20100806/gems/bundler08-0.8.5/lib/bundler08/resolver.rb:115:Warning: Gem::Dependency#version_requirements is deprecated and will be removed on or after August 2010.  Use #requirement
+Caching: actionmailer-2.3.8.gem
+Caching: actionpack-2.3.8.gem
+Caching: activerecord-2.3.8.gem
+Caching: activeresource-2.3.8.gem
+Caching: activesupport-2.3.8.gem
+Caching: appengine-apis-0.0.18.gem
+Caching: appengine-rack-0.0.11.gem
+Caching: bouncy-castle-java-1.5.0145.2.gem
+Caching: jruby-jars-1.5.2.gem
+Caching: jruby-openssl-0.7.1.gem
+Caching: jruby-rack-1.0.3.gem
+Caching: rack-1.1.0.gem
+Caching: rails-2.3.8.gem
+Caching: rails_appengine-0.0.4.gem
+Caching: rails_tiny_ds-0.0.2.1.gem
+Caching: rake-0.8.7.gem
+Caching: tiny_ds-0.0.2.gem
+Installing activesupport (2.3.8)
+Installing rails_appengine (0.0.4)
+Installing bouncy-castle-java (1.5.0145.2)
+Installing jruby-openssl (0.7.1)
+Installing jruby-jars (1.5.2)
+Installing rack (1.1.0)
+Installing actionpack (2.3.8)
+Installing actionmailer (2.3.8)
+Installing jruby-rack (1.0.3)
+Installing appengine-rack (0.0.11)
+Installing appengine-apis (0.0.18)
+Installing tiny_ds (0.0.2)
+Installing rake (0.8.7)
+Installing activerecord (2.3.8)
+Installing activeresource (2.3.8)
+Installing rails (2.3.8)
+Installing rails_tiny_ds (0.0.2.1)
+Done.
+=> Packaging gems
+=> Installing appengine-api-1.0-sdk-1.3.5.jar
+=> Installing appengine-api-labs-1.3.5.jar
+=> Installing appengine-rack.jar
+=> Installing bcmail-jdk15-145.jar
+=> Installing bcprov-jdk15-145.jar
+=> Installing jruby-core-1.5.2.jar
+=> Installing jruby-stdlib-1.5.2.jar
+=> Installing jopenssl.jar
+=> Installing jruby-rack-1.0.3.jar
+=> Booting DevAppServer
+=> Press Ctrl-C to shutdown server
+Warning: The Mac OS -XstartOnFirstThread: is currently unsupported
+2010/08/24 15:53:18 com.google.apphosting.utils.jetty.JettyLogger info
+情報: Logging to JettyLogger(null) via com.google.apphosting.utils.jetty.JettyLogger
+2010/08/24 15:53:19 com.google.apphosting.utils.config.AppEngineWebXmlReader readAppEngineWebXml
+情報: Successfully processed /Users/takeru/demo/ruby-kaigi/WEB-INF/appengine-web.xml
+2010/08/24 15:53:19 com.google.apphosting.utils.config.AbstractConfigXmlReader readConfigXml
+情報: Successfully processed /Users/takeru/demo/ruby-kaigi/WEB-INF/web.xml
+2010/08/24 15:53:19 com.google.apphosting.utils.jetty.JettyLogger info
+情報: jetty-6.1.x
+2010/08/24 15:53:33 com.google.apphosting.utils.jetty.JettyLogger info
+情報: Started SelectChannelConnector@0.0.0.0:8080
+2010/08/24 15:53:33 com.google.appengine.tools.development.DevAppServerImpl start
+情報: The server is running at http://localhost:8080/
+
+
+
+tkrmb:~/demo/ruby-kaigi% gem list
+
+*** LOCAL GEMS ***
+
+actionmailer (2.3.8)
+actionpack (2.3.8)
+activerecord (2.3.8)
+activerecord-nulldb-adapter (0.2.0)
+activeresource (2.3.8)
+activesupport (2.3.8)
+appengine-apis (0.0.18)
+appengine-rack (0.0.11)
+appengine-sdk (1.3.5)
+appengine-tools (0.0.15)
+bouncy-castle-java (1.5.0145.2)
+bundler08 (0.8.5)
+google-appengine (0.0.15)
+jruby-jars (1.5.2, 1.5.1)
+jruby-openssl (0.7.1)
+jruby-rack (1.0.3, 1.0.2)
+rack (1.2.1, 1.1.0)
+rails (2.3.8)
+rails_appengine (0.0.4)
+rails_tiny_ds (0.0.2.1)
+rake (0.8.7)
+rdoc (2.5.8)
+rubyzip (0.9.4)
+tiny_ds (0.0.2)
+
+
+tkrmb:~/demo/ruby-kaigi% ./script/generate scaffold article title:string summary:text url:string pages:integer -f --skip-migration
+      exists  app/models/
+      exists  app/controllers/
+      exists  app/helpers/
+      create  app/views/articles
+      exists  app/views/layouts/
+      exists  test/functional/
+      exists  test/unit/
+      create  test/unit/helpers/
+      exists  public/stylesheets/
+      create  app/views/articles/index.html.erb
+      create  app/views/articles/show.html.erb
+      create  app/views/articles/new.html.erb
+      create  app/views/articles/edit.html.erb
+      create  app/views/layouts/articles.html.erb
+      create  public/stylesheets/scaffold.css
+      create  app/controllers/articles_controller.rb
+      create  test/functional/articles_controller_test.rb
+      create  app/helpers/articles_helper.rb
+      create  test/unit/helpers/articles_helper_test.rb
+       route  map.resources :articles
+  dependency  model
+      exists    app/models/
+      exists    test/unit/
+      exists    test/fixtures/
+      create    app/models/article.rb
+      create    test/unit/article_test.rb
+      create    test/fixtures/articles.yml
+
+tkrmb:~/demo/ruby-kaigi% ./script/generate td_model article title:string summary:text url:string pages:integer -f
+      exists  app/models/
+      exists  test/unit/
+       force  app/models/article.rb
+       force  test/unit/article_test.rb
 
