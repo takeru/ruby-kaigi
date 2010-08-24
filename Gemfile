@@ -13,3 +13,8 @@ gem 'jruby-openssl',  '0.7.1'
 gem 'jruby-jars',     '1.5.2'
 gem 'rails',          '2.3.8'
 gem 'jruby-rack',     '1.0.3'
+
+#gem 'twitter-jruby', '0.9.7.2010061001'
+#gem 'twitter-auth' # NG http://kray.jp/blog/twitter_service_in_1hours/
+gem 'twitter_oauth'
+gem 'oauth',         '0.3.6'

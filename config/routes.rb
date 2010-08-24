@@ -36,6 +36,12 @@ ActionController::Routing::Routes.draw do |map|
   # map.root :controller => "welcome"
 
   # See how all your routes lay out with "rake routes"
+  map.connect "/login",    :controller=>"twitter", :action=>"login"
+  map.connect "/callback", :controller=>"twitter", :action=>"callback"
+  map.connect "/logout",   :controller=>"twitter", :action=>"logout"
+
+  map.connect "/users",              :controller=>"users", :action=>"list"
+  map.connect "/users/:screen_name", :controller=>"users", :action=>"show"
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should

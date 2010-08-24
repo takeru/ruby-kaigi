@@ -1,0 +1,9 @@
+<h1>
+<a href="http://twitter.com/<%= h(@user.screen_name) %>">
+  <%= image_tag @user.profile_image_url %><%= h(@user.screen_name) %>
+</a>
+</h1>
+
+<pre>
+<%= h @user.twitter_info.pretty_inspect %>
+</pre>

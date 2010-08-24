@@ -1,0 +1,5 @@
+
+<p><%= @user_count %> users.</p>
+<% @users.each do |u| %>
+  <%= link_to h("@#{u.screen_name}"), :action=>"show", :screen_name=>u.screen_name %>
+<% end %>

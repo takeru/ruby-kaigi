@@ -243,7 +243,6 @@ Warning: The Mac OS -XstartOnFirstThread: is currently unsupported
 情報: The server is running at http://localhost:8080/
 
 
-
 tkrmb:~/demo/ruby-kaigi% gem list
 
 *** LOCAL GEMS ***
@@ -273,6 +272,8 @@ rdoc (2.5.8)
 rubyzip (0.9.4)
 tiny_ds (0.0.2)
 
+
+[scaffold for TinyDS]
 
 tkrmb:~/demo/ruby-kaigi% ./script/generate scaffold article title:string summary:text url:string pages:integer -f --skip-migration
       exists  app/models/
@@ -309,3 +310,29 @@ tkrmb:~/demo/ruby-kaigi% ./script/generate td_model article title:string summary
        force  app/models/article.rb
        force  test/unit/article_test.rb
 
+
+
+[add "gem 'twitter'" to Gemfile]
+
+tkrmb:~/demo/ruby-kaigi% ./script/server.sh
+=> Bundling gems
+Calculating dependencies...
+Updating source: http://gems.rubyforge.org
+/Users/takeru/.rvm/gems/ruby-1.8.7-p174@jruby20100806/gems/bundler08-0.8.5/lib/bundler08/resolver.rb:115:Warning: Gem::Dependency#version_requirements is deprecated and will be removed on or after August 2010.  Use #requirement
+Downloading crack-0.1.6.gem
+Downloading hashie-0.2.2.gem
+Downloading httparty-0.5.2.gem
+Downloading oauth-0.4.2.gem
+Downloading twitter-0.9.8.gem
+Downloading yajl-ruby-0.7.7.gem
+Installing yajl-ruby (0.7.7)
+Building native extensions.  This could take a while...
+/Users/takeru/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/site_ruby/1.8/rubygems/installer.rb:464: warning: conflicting chdir during another chdir block
+/Users/takeru/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/site_ruby/1.8/rubygems/installer.rb:485: warning: conflicting chdir during another chdir block
+Installing crack (0.1.6)
+Installing oauth (0.4.2)
+Installing hashie (0.2.2)
+Installing httparty (0.5.2)
+When you HTTParty, you must party hard!
+Installing twitter (0.9.8)
+Done.

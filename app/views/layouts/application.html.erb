@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Demo for JRubyKaigi2010</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+
+<div class="header">
+  <% if logged_in? %>
+    You are <%= link_to h(current_user.screen_name), :controller=>"users", :action=>"show", :screen_name=>current_user.screen_name %>
+            <%= link_to "logout", :controller=>"twitter", :action=>"logout" %>
+  <% else %>
+    <%= link_to "login", :controller=>"twitter", :action=>"login" %>
+  <% end %>
+</div>
+
+<p class="notice" style="color: green"><%= notice %></p>
+
+<%= yield %>
+
+</body>
+</html>
