@@ -1,0 +1,43 @@
+RubyKaigi(Unofficial)
+GoogleAppEngine/JRugy demo app for JRubyKaigi2010
+
+http//ruby-kaigi.appspot.com/
+ - #rubykaigi
+ - login by twitter and tweet with hashtag "#rubykaigi"
+ - Room hasht tag hashtag http://rubykaigi.org/2010/ja/timetable
+   - #rkMain #rkSub #rk202B #rk202A #rk201B #rk201A 
+ - Session hashtag / User defined hashtag
+   - 
+ - API Limit
+   - URLFetch with logined account
+ - IRC -> XMPP http://github.com/sophsec/xmpp-irc-relay
+ - iPhone
+ - ping to keep instances
+ - Req/Min, instances
+ - Fetch tweets with hashtag, save to datastore
+   - http://dev.twitter.com/pages/rate-limiting
+   - 350/h => 1req/10.28sec
+ - polling every 15sec from browser. Ajax JSON JQuery?
+ - memcache
+
+http//ruby-kaigi.appspot.com/user/123456-urekat
+http//ruby-kaigi.appspot.com/user/123456
+ - Items
+   - TwitterID
+   - badge : http://rubykaigi.org/2010/ja/Goodies or None
+   - URL
+   - memo
+   - tag : jruby appengine ....
+   - Where are you from : google maps
+   - [Mension to XXXX]
+   - [DM to XXXX]
+
+http//ruby-kaigi.appspot.com/users/all
+ - list of TwitterIDs
+
+http//ruby-kaigi.appspot.com/users/map
+ - Google Map
+
+http//ruby-kaigi.appspot.com/wiki/FrontPage
+ - wiki
+ - RedCloth
