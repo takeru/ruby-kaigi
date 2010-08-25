@@ -1,0 +1,14 @@
+
+<h3><%= link_to "Top", "/" %></h3>
+
+<h3><%= link_to "All Users", :controller=>"users", :action=>"list" %></h3>
+
+<h3>Badges</h3>
+<% User.badge_options.each do |label,key| %>
+  <%= link_to h("#{label}(?)"), :controller=>"users", :action=>"list_by_badge", :badge=>key %>
+<% end %>
+
+<h3>Tags</h3>
+<% ["todo", "appengine", "jruby"].each do |tag| %>
+  <%= link_to h("#{tag}(?)"), :controller=>"users", :action=>"list_by_tag", :tag=>tag %>
+<% end %>

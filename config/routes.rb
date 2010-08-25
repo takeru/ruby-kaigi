@@ -40,7 +40,12 @@ ActionController::Routing::Routes.draw do |map|
   map.connect "/callback", :controller=>"twitter", :action=>"callback"
   map.connect "/logout",   :controller=>"twitter", :action=>"logout"
 
+  map.connect "/sitemap",  :controller=>"top", :action=>"sitemap"
+  
   map.connect "/users",              :controller=>"users", :action=>"list"
+  map.connect "/users/_tag/:tag",    :controller=>"users", :action=>"list_by_tag"
+  map.connect "/users/_badge/:badge",:controller=>"users", :action=>"list_by_badge"
+  map.connect "/users/_edit",        :controller=>"users", :action=>"edit"
   map.connect "/users/:screen_name", :controller=>"users", :action=>"show"
 
   # Install the default routes as the lowest priority.

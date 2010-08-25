@@ -9,17 +9,17 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   def current_user
-    unless @current_user.nil?
-      return @current_user==:false ? nil : @current_user
+    if @current_user.nil?
+      if session[:user_id]
+        @current_user = User.get_by_id(session[:user_id])
+      end
+      @current_user ||= :false
     end
-    if session[:user_id]
-      @current_user = User.get_by_id(session[:user_id])
-    end
-    @current_user ||= :false
+    return @current_user==:false ? nil : @current_user
   end
 
   def logged_in?
-    current_user != :false
+    current_user != nil
   end
 
   helper_method :current_user, :logged_in?

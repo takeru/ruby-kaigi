@@ -33,7 +33,7 @@ Rails::Initializer.run do |config|
     # Patch Rails Framework
     require 'rails_appengine'
     # Use TinyDS to access datastore
-    require 'tiny_ds'
+    require 'lib/tiny_ds/lib/tiny_ds' # use latest version. don't use gem version.
     require 'rails_tiny_ds'
     # Set Logger from appengine-apis, all environments
     require 'appengine-apis/logger'

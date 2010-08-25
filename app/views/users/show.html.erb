@@ -3,6 +3,22 @@
   <%= image_tag @user.profile_image_url %><%= h(@user.screen_name) %>
 </a>
 </h1>
+# @user.nickname
+
+
+<p><%= @user.counter %> views</p>
+
+<%= link_to(image_tag("badges/#{@user.badge}.png"), :action=>"list_by_badge", :badge=>@user.badge) %>
+
+<p><%= h(@user.memo) %></p>
+
+<p><%= link_to h(@user.url), h(@user.url) %></p>
+
+<p>
+  Tags:<% @user.tags.each do |tag| %>
+    <%= link_to h(tag), :action=>"list_by_tag", :tag=>tag %>
+  <% end %>
+</p>
 
 <pre>
 <%= h @user.twitter_info.pretty_inspect %>

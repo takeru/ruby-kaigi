@@ -22,7 +22,8 @@ class TwitterController < ApplicationController
       info = client.info
       @user = User.login(info, access_token.token, access_token.secret)
       session[:user_id] = @user.id
-      redirect_to :controller=>"users", :action=>"show", :screen_name=>@user.screen_name
+      flash[:notice] = "Hello, @#{@user.screen_name}!!"
+      redirect_to :controller=>"users", :action=>"edit"
     else
       render :text=>"NG"
     end

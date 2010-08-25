@@ -6,7 +6,7 @@
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
   :key         => '_ruby-kaigi_session',
-  :secret      => '0ef65735607959305538f42b74ad8c67faaffe106500939ed48fd35732904ee55e8845e11fc636756c892020c57500b5ae2e7e551e1b2da8e32448df2296c114'
+  :secret      => YAML.load_file(RAILS_ROOT + "/config/secret.yaml")["session_secret"]
 }
 
 # Use the database for sessions instead of the cookie-based default,

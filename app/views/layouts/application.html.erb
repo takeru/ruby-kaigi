@@ -11,10 +11,11 @@
 
 <div class="header">
   <% if logged_in? %>
-    You are <%= link_to h(current_user.screen_name), :controller=>"users", :action=>"show", :screen_name=>current_user.screen_name %>
-            <%= link_to "logout", :controller=>"twitter", :action=>"logout" %>
+    You are <%= link_to h(current_user.screen_name), :controller=>"users", :action=>"show", :screen_name=>current_user.screen_name %>,
+            <%= link_to "Edit profile", :controller=>"users", :action=>"edit" %>
+            <%= link_to "Sitemap", :controller=>"top", :action=>"sitemap" %>
   <% else %>
-    <%= link_to "login", :controller=>"twitter", :action=>"login" %>
+    <%= link_to "[Login with Twitter]", :controller=>"twitter", :action=>"login" %>
   <% end %>
 </div>
 

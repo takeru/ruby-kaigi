@@ -20,17 +20,49 @@ http//ruby-kaigi.appspot.com/
  - polling every 15sec from browser. Ajax JSON JQuery?
  - memcache
 
-http//ruby-kaigi.appspot.com/user/123456-urekat
-http//ruby-kaigi.appspot.com/user/123456
+http//ruby-kaigi.appspot.com/users/urekat
+http//ruby-kaigi.appspot.com/users/:screen_name
+http//ruby-kaigi.appspot.com/users?id=12345 => fetch :screen_name and redirect to :screen_name
  - Items
    - TwitterID
    - badge : http://rubykaigi.org/2010/ja/Goodies or None
    - URL
    - memo
    - tag : jruby appengine ....
-   - Where are you from : google maps
-   - [Mension to XXXX]
-   - [DM to XXXX]
+
+   - send_message "hello how are you."
+     - if receiver was not registered, tweet "@receiver "hello how are you." http://bit.ly/..."
+     - save Message("sender_id|reveiver_id"), only one message is stored. will be overwriten.
+   - PING button : send message "Ping" if message is not exists.
+   - new messages
+     - "...incomming message..." [reply]
+     - "...incomming message..." / "...sent message..."
+     - "...incomming message..." [reply]     
+
+   - show unregistered user page.
+     - unregistered user screen_name to user_id
+     - unregistered user screen_name list page
+     - layout "search friend [      ]"
+     - friend_ids following / followers
+
+   - link to twitter [Mension to XXXX]
+   - link to twitter [DM to XXXX]
+   - (Where are you from : google maps)
+
+
+http//ruby-kaigi.appspot.com/users/:screen_name/inbox
+ - received messages
+ - order by updated_at desc
+
+http//ruby-kaigi.appspot.com/users/:screen_name/outbox
+ - sent messages
+ - order by updated_at desc
+
+
+* Notice new message every 30 mins.
+ - mension (or DM)
+ - OFF
+
 
 http//ruby-kaigi.appspot.com/users/all
  - list of TwitterIDs
@@ -38,6 +70,6 @@ http//ruby-kaigi.appspot.com/users/all
 http//ruby-kaigi.appspot.com/users/map
  - Google Map
 
-http//ruby-kaigi.appspot.com/wiki/FrontPage
- - wiki
- - RedCloth
+#http//ruby-kaigi.appspot.com/wiki/FrontPage
+# - wiki
+# - RedCloth

@@ -1,5 +1,6 @@
+<h1><%= @title %></h1>
 
 <p><%= @user_count %> users.</p>
 <% @users.each do |u| %>
-  <%= link_to h("@#{u.screen_name}"), :action=>"show", :screen_name=>u.screen_name %>
+  <%= link_to image_tag(u.profile_image_url)+h("#{u.screen_name}"), :action=>"show", :screen_name=>u.screen_name %>
 <% end %>

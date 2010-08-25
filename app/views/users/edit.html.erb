@@ -1,0 +1,18 @@
+<%= link_to "Logout", :controller=>"twitter", :action=>"logout" %>
+
+<% form_for @user, :url=>{:action=>"edit"} do |f| %>
+  <p>
+    <%= f.select :badge, User.badge_options %>
+  </p>
+  <p>
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.text_area  :memo %>
+  </p>
+  <p>
+    <%= f.text_field :tags, :value=>@user.tags.join(" ") %>
+  </p>
+
+  <%= submit_tag "save" %>
+<% end %>
