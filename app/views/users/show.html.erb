@@ -1,25 +1,93 @@
-<h1>
-<a href="http://twitter.com/<%= h(@user.screen_name) %>">
-  <%= image_tag @user.profile_image_url %><%= h(@user.screen_name) %>
-</a>
-</h1>
-# @user.nickname
+<div>
+  <h1>
+  <a href="http://twitter.com/<%= h(@user.screen_name) %>">
+    <%= image_tag @user.profile_image_url %>
+    <%= h("@"+@user.screen_name) %>
+    (<%= @user.name %>)
+  </a>
+  </h1>
+  <p><%= @user.counter %> views</p>
 
-
-<p><%= @user.counter %> views</p>
-
-<%= link_to(image_tag("badges/#{@user.badge}.png"), :action=>"list_by_badge", :badge=>@user.badge) %>
-
-<p><%= h(@user.memo) %></p>
-
-<p><%= link_to h(@user.url), h(@user.url) %></p>
-
-<p>
-  Tags:<% @user.tags.each do |tag| %>
-    <%= link_to h(tag), :action=>"list_by_tag", :tag=>tag %>
+  <% form_tag :controller=>"twitter", :action=>"tweet" do %>
+<%
+if logged_in? && current_user.id==@user.id
+  status = "PING me! #{@user_url} #gae_jruby_demo #rubykaigi"
+else
+  status = "@#{@user.screen_name} #{@user_url} #gae_jruby_demo"
+end
+%>
+    <%= text_area_tag :status, status, :cols=>3, :style=>"width:50%;" %><br />
+    <%= hidden_field_tag :screen_name, @user.screen_name %>
+    <%= submit_tag "つぶやく / Tweet!!" %>
   <% end %>
-</p>
+</div>
 
-<pre>
-<%= h @user.twitter_info.pretty_inspect %>
-</pre>
+
+<div id="boxB">
+  <h2>受信 / Received(<%= @received_messages.size %>)</h2>
+
+  <% if logged_in? && @user.id == current_user.id %>
+  <% else %>
+    <% form_for @message, :url=>{:controller=>"messages", :action=>"create"} do |f| %>
+      <%= f.hidden_field :receiver_id %>
+      <%= submit_tag h(">>>> PING to @#{@user.screen_name} <<<<") %>
+    <% end %>
+  <% end %>
+  <p>
+    <% @received_messages.each do |m| %>
+      <% u = @user_cache[m.sender_id] %>
+      <%= link_to image_tag(u[:profile_image_url], :alt=>u[:screen_name]),
+                            {:controller=>"users", :action=>"show", :screen_name=>u[:screen_name]},
+                            :title=>"@#{u[:screen_name]}"+m.updated_at.strftime("%m/%d %H:%M") %>
+    <% end %>
+    <% if @received_messages.empty? %>
+      <span style="color:red;">No Ping, PING me!</span>
+    <% end %>
+  </p>
+
+  <h2>送信 / Sent(<%= @sent_messages.size %>)</h2>
+  <p>
+    <% @sent_messages.each do |m| %>
+      <% u = @user_cache[m.receiver_id] %>
+      <%= link_to image_tag(u[:profile_image_url], :alt=>u[:screen_name]),
+                            {:controller=>"users", :action=>"show", :screen_name=>u[:screen_name]},
+                            :title=>"@#{u[:screen_name]} "+m.updated_at.strftime("%m/%d %H:%M") %>
+    <% end %>
+    <% if @sent_messages.empty? %>
+      <span style="color:red;">Not yet..</span>
+      <% form_tag :controller=>"twitter", :action=>"tweet" do %>
+        <%= text_area_tag :status, "@#{@user.screen_name} #{@user_url} #gae_jruby_demo", :cols=>3, :style=>"width:80%;" %><br />
+        <%= hidden_field_tag :screen_name, @user.screen_name %>
+        <%= submit_tag "つぶやく / Tweet!!" %>
+      <% end %>
+    <% end %>
+  </p>
+</div>
+
+<div id="boxC">
+  <h2>自己紹介 / About me</h2>
+  <p><%= h(@user.memo) %></p>
+
+  <h2>URL</h2>
+  <p><%= link_to h(@user.url), h(@user.url) %></p>
+
+  <h2>タグ / Tags</h2>
+  <p>
+    <% @user.tags.each do |tag| %>
+      <%= link_to h(tag), :action=>"list_by_tag", :tag=>tag %>
+    <% end %>
+  </p>
+
+  <h2>バッジ / Badges</h2>
+  <p>
+    <% @user.badges.each do |b| %>
+      <%= link_to(image_tag("badges/#{b}.png"), :action=>"list_by_badge", :badge=>b) %>
+    <% end %>
+  </p>
+</div>
+
+<div id="boxD">
+</div>
+
+<%#= "<pre>"+h(@user.twitter_info.pretty_inspect)+"</pre>" %>
+

@@ -1,0 +1,29 @@
+.right{
+  text-align: right;
+}
+
+body {
+ text-align:center;
+}
+
+#container {
+ width:96%;
+ margin-left:auto;
+ margin-right:auto;
+ text-align:left;
+}
+
+#boxB {
+ width:50%;
+ float:left;
+}
+
+#boxC {
+ width:49%;
+ float:right;
+}
+
+#boxD {
+ width:100%;
+ clear:both;
+}

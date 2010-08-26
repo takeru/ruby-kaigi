@@ -6,22 +6,41 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Demo for JRubyKaigi2010</title>
   <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag :defaults %>
 </head>
 <body>
 
 <div class="header">
-  <% if logged_in? %>
-    You are <%= link_to h(current_user.screen_name), :controller=>"users", :action=>"show", :screen_name=>current_user.screen_name %>,
-            <%= link_to "Edit profile", :controller=>"users", :action=>"edit" %>
-            <%= link_to "Sitemap", :controller=>"top", :action=>"sitemap" %>
-  <% else %>
-    <%= link_to "[Login with Twitter]", :controller=>"twitter", :action=>"login" %>
-  <% end %>
+  <div class="right">
+    <%= Message.count %> pings.
+    <% if logged_in? %>
+      You are <%= link_to h("@"+current_user.screen_name), :controller=>"users", :action=>"show", :screen_name=>current_user.screen_name %>,
+              <%= link_to "Edit profile", :controller=>"users", :action=>"edit" %>
+    <% else %>
+      <%= link_to "<span style='color:lightblue; background-color:blue;'>[ Login with Twitter account ]</span>", :controller=>"twitter", :action=>"login" %>
+    <% end %>
+    <%= link_to "Top", :controller=>"top", :action=>"index" %>
+    <a href="http://jrubyconf.com/jrubykaigi2010/schedule.html.ja">JRubyKaigi2010</a>
+    <a href="http://jrubyconf.com/jrubykaigi2010/schedule.html.en">[en]</a>
+  </div>
 </div>
 
-<p class="notice" style="color: green"><%= notice %></p>
+<p class="notice" style="color: green"><%= h notice %></p>
 
 <%= yield %>
+
+
+
+<div id="boxE">
+  <hr />
+  <a href="http://jrubyconf.com/jrubykaigi2010/schedule.html.ja#3">AppEngine/JRuby Demo app for JRubyKaigi2010[ja]</a>
+  <a href="http://jrubyconf.com/jrubykaigi2010/schedule.html.en#3">[en]</a>
+  |
+  <a href="http://twitter.com/urekat">@urekat</a>
+  |
+  <%= link_to "Sitemap", :controller=>"top", :action=>"sitemap" %>
+</div>
 
 </body>
 </html>

@@ -63,6 +63,9 @@ http//ruby-kaigi.appspot.com/users/:screen_name/outbox
  - mension (or DM)
  - OFF
 
+* tweet all message from @ruby-kaigi_appspot_com
+ - serial number
+
 
 http//ruby-kaigi.appspot.com/users/all
  - list of TwitterIDs

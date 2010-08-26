@@ -1,4 +1,3 @@
-require "twitter_oauth" # http://github.com/moomerman/twitter_oauth
 class TwitterController < ApplicationController
   def login
     client = new_twitter_client
@@ -34,14 +33,17 @@ class TwitterController < ApplicationController
     redirect_to "/"
   end
 
-  def new_twitter_client
-    TwitterOAuth::Client.new(
-      :consumer_key    => twitter_config["oauth"]["key"],
-      :consumer_secret => twitter_config["oauth"]["secret"]
-    )
-  end
-  def twitter_config
-    @twitter_config ||= YAML.load_file(Pathname(RAILS_ROOT)+"config"+"secret.yaml")["twitter"]
+  def tweet
+    unless logged_in?
+      redirect_to :controller=>"twitter", :action=>"login"
+      return
+    end
+
+    tw = user_twitter_client
+    tw.update(params[:status])
+
+    flash[:notice] = "tweeted!! '#{params[:status]}'"
+    redirect_to :controller=>"users", :action=>"show", :screen_name=>params[:screen_name]
   end
 
   def demo_twitter_jruby

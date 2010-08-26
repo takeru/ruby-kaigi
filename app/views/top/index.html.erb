@@ -1,0 +1,21 @@
+<h1>Find your friend! :) (<%= @user_count %>)</h1>
+
+<% @users.each do |u| %>
+  <%= link_to image_tag(u.profile_image_url), {:controller=>"users", :action=>"show", :screen_name=>u.screen_name}, :title=>h("#{u.screen_name}") %>
+<% end %>
+
+<script>
+function _onsubmit(){
+  var sn = $('screen_name').value;
+  if(sn!=""){
+    location.href = "/users/"+sn;
+  }
+}
+</script>
+<p>
+  <% form_tag({}, :onsubmit=>"_onsubmit(); return false;") do %>
+    <p style="font-size:2em;">Twitter screen_name:</p>
+    <%= text_field_tag :screen_name, "", :style=>"font-size:3em;", :size=>15 %><br />
+    <%= submit_tag " 検索 / Search" %>
+  <% end %>
+</p>
