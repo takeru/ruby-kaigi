@@ -8,31 +8,22 @@
   </h1>
   <p><%= @user.counter %> views</p>
 
-  <% form_tag :controller=>"twitter", :action=>"tweet" do %>
-<%
-if logged_in? && current_user.id==@user.id
-  status = "PING me! #{@user_url} #gae_jruby_demo #rubykaigi"
-else
-  status = "@#{@user.screen_name} #{@user_url} #gae_jruby_demo"
-end
-%>
-    <%= text_area_tag :status, status, :cols=>3, :style=>"width:50%;" %><br />
-    <%= hidden_field_tag :screen_name, @user.screen_name %>
-    <%= submit_tag "つぶやく / Tweet!!" %>
-  <% end %>
-</div>
-
-
-<div id="boxB">
-  <h2>受信 / Received(<%= @received_messages.size %>)</h2>
-
-  <% if logged_in? && @user.id == current_user.id %>
+  <% if logged_in? && current_user.id==@user.id %>
+    <% form_tag :controller=>"twitter", :action=>"tweet" do %>
+      <%= text_area_tag :status, "PING me! #{@user_url} #gaejrubydemo #rubykaigi", :cols=>3, :style=>"width:50%;" %><br />
+      <%= hidden_field_tag :screen_name, @user.screen_name %>
+      <%= submit_tag "つぶやく / Tweet!!" %>
+    <% end %>
   <% else %>
     <% form_for @message, :url=>{:controller=>"messages", :action=>"create"} do |f| %>
       <%= f.hidden_field :receiver_id %>
       <%= submit_tag h(">>>> PING to @#{@user.screen_name} <<<<") %>
     <% end %>
   <% end %>
+</div>
+
+<div id="boxB">
+  <h2>受信 / Received(<%= @received_messages.size %>)</h2>
   <p>
     <% @received_messages.each do |m| %>
       <% u = @user_cache[m.sender_id] %>
@@ -56,7 +47,7 @@ end
     <% if @sent_messages.empty? %>
       <span style="color:red;">Not yet..</span>
       <% form_tag :controller=>"twitter", :action=>"tweet" do %>
-        <%= text_area_tag :status, "@#{@user.screen_name} #{@user_url} #gae_jruby_demo", :cols=>3, :style=>"width:80%;" %><br />
+        <%= text_area_tag :status, "@#{@user.screen_name} #{@user_url} #gaejrubydemo", :cols=>3, :style=>"width:80%;" %><br />
         <%= hidden_field_tag :screen_name, @user.screen_name %>
         <%= submit_tag "つぶやく / Tweet!!" %>
       <% end %>
@@ -73,8 +64,8 @@ end
 
   <h2>タグ / Tags</h2>
   <p>
-    <% @user.tags.each do |tag| %>
-      <%= link_to h(tag), :action=>"list_by_tag", :tag=>tag %>
+    <% cache_util.get_tag_and_counts(@user.tags).each do |tag,count| %>
+      <%= link_to h("#{tag}(#{count})"), :action=>"list_by_tag", :tag=>tag %>
     <% end %>
   </p>
 

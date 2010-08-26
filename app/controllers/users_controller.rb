@@ -29,14 +29,17 @@ class UsersController < ApplicationController
     end
     @user = current_user
     if request.put?
+      old_tags = @user.tags
+      new_tags = params[:user][:tags].strip.split(/[\s,]/).compact.uniq.collect{|t| t.downcase }
       @user.tx do |u|
         u.badges = params[:user][:badges]
-        u.url    = params[:user][:url]
+        u.url    = params[:user][:url] if params[:user][:url]=~/^https?:\/\// || params[:user][:url]==""
         u.memo   = params[:user][:memo]
-        u.tags   = params[:user][:tags].strip.split(/[\s,]/).compact.uniq.collect{|t| t.downcase }
+        u.tags   = new_tags
 
         u.save
       end
+      cache_util.update_tag_counts((new_tags+old_tags).sort.uniq)
       flash[:notice] = "saved!"
       redirect_to :action=>"show", :screen_name=>@user.screen_name
       return

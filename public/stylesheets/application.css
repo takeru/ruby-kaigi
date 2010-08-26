@@ -27,3 +27,7 @@ body {
  width:100%;
  clear:both;
 }
+
+.noborder{
+  border: 0px;
+}

@@ -24,5 +24,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?
 
+  def cache_util
+    @cache_util ||= CacheUtil.new
+  end
+  helper_method :cache_util
+
   include TwitterSupport
 end

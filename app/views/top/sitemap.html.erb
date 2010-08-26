@@ -5,12 +5,12 @@
 
 <h3>Badges</h3>
 <% User.badge_options.each do |label,key| %>
-  <%= link_to h("#{label}(?)"), :controller=>"users", :action=>"list_by_badge", :badge=>key %>
+  <%= link_to h("#{label}"), :controller=>"users", :action=>"list_by_badge", :badge=>key %>
 <% end %>
 
 <h3>Tags(todo)</h3>
-<% ["ruby", "todo", "appengine", "jruby", "日本人"].each do |tag| %>
-  <%= link_to h("#{tag}(?)"), :controller=>"users", :action=>"list_by_tag", :tag=>tag %>
+<% cache_util.get_tag_and_counts.each do |tag,count| %>
+  <%= link_to h("#{tag}(#{count})"), :controller=>"users", :action=>"list_by_tag", :tag=>tag %>
 <% end %>
 
 <h3>Logout</h3>
