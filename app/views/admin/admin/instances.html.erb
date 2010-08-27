@@ -1,0 +1,56 @@
+<h1>AppEngineInstanceLog2</h1>
+
+<table border="1">
+<tr>
+  <td>version</td>
+  <td>active_count</td>
+</tr>
+<% @active_counts.keys.sort.each do |version| %>
+  <tr>
+    <td><%= link_to(version, :version=>version) %></td>
+    <td><%= @active_counts[version] %></td>
+  </tr>
+<% end %>
+  <tr>
+    <td><%= link_to("ALL", :version=>nil) %></td>
+    <td>-</td>
+  </tr>
+</table>
+
+<table border="1">
+<tr>
+  <td>uuid</td>
+  <td>version</td>
+  <td>counter</td>
+  <td>req/min(current)</td>
+  <td>req/min(total)</td>
+  <td>updated_at</td>
+  <td colspan="3">gae_created_at</td>
+</tr>
+<% @logs.each do |log| %>
+<tr>
+  <td><%= log[:uuid] %></td>
+  <td><%= log[:version] %></td>
+  <td style="text-align:right;"><%= log[:total_count] %></td>
+  <td style="text-align:right;"><%= ("%6.2f" % log[:req_per_min_current]) if log[:req_per_min_current] %></td>
+  <td style="text-align:right;"><%= ("%6.2f" % log[:req_per_min_total  ]) if log[:req_per_min_total  ] %></td>
+  <td>
+    <% sec = Time.now-log[:updated_at] %>
+    <span style="<%= 'color:red;' if sec<60.0 %>"><%= hhmmss(sec) %></span>
+  </td>
+  <td><%= hhmmss(Time.now-log[:gae_created_at]) %></td>
+  <td><%= log[:gae_created_at].strftime("%m/%d_%H:%M:%S") %></td>
+  <td>
+    <% if log[:create_delta_sec] %>
+      <% color = "gray"
+         color = "orange" if log[:create_delta_sec] < 180
+         color = "red"    if log[:create_delta_sec] <  60
+       %>
+      <span style="color:<%= color %>;">
+        <%= hhmmss(log[:create_delta_sec]) %>
+      </span>
+    <% end %>
+  </td>
+</tr>
+<% end %>
+</table>
