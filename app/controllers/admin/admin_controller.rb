@@ -1,4 +1,45 @@
 class Admin::AdminController < ::Admin::Base
+  def remote_eval
+    
+  end
+  class Local
+    attr_reader :__output
+    def initialize
+      @__output = StringIO.new
+    end
+    def __do_eval(code)
+      begin
+        self.instance_eval(code)
+      rescue Object => e
+        ["ERROR", e, e.backtrace]
+      end
+    end
+    def puts(*args)
+      @__output.puts(*args)
+    end
+    def p(*args)
+      args = args.first if args.size==1
+      puts(args.inspect)
+    end
+    def pp(*args)
+      args = args.first if args.size==1
+      puts(args.pretty_inspect)
+    end
+  end
+  def remote_eval
+    if request.post?
+      code = params[:code]
+      @rows = code.split("\n").size+1
+      @rows = 10 if @rows<10
+      local = Local.new
+      @result = local.__do_eval(code)
+      @output = local.__output.string
+      logger.info "[remote_eval]\ncode=\n********\n#{code}\n********\n@result=\n********\n#{@result.pretty_inspect}\n********\n@output=\n********\n#{@output}\n********"
+    else
+      @rows = 10
+    end
+  end
+
   def instances
     mc = AppEngine::Memcache.new(:namespace=>"AppEngineInstanceLog2")
     @data = mc.get("data")
