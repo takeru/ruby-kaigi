@@ -21,14 +21,15 @@ class User < TinyDS::Base
       u = User.get_by_id(info["id"])
       unless u
         u = User.new({}, :id=>info["id"])
-        u.url = info["url"]
-        u.registered_at = Time.now
       end
-      u.twitter_info_json = info.to_json
-      u.screen_name = info["screen_name"]
+      u.twitter_info_json   = info.to_json
+      u.screen_name         = info["screen_name"]
+      u.url               ||= info["url"]
+
       u.atoken  = atoken
       u.asecret = asecret
-      u.last_login_at = Time.now
+      u.last_login_at   = Time.now
+      u.registered_at ||= Time.now
       u.save
       u
     end

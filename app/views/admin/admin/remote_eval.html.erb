@@ -1,0 +1,17 @@
+<% form_tag do %>
+  INPUT:<br />
+  <%= text_area_tag :code, params[:code], :rows=>@rows, :style=>"width:90%" %><br />
+  <%= submit_tag "remote_eval" %>
+<% end %>
+
+<hr />
+
+OUTPUT:<br />
+<pre style="border:1px solid gray;">
+<%=h @output %>
+</pre>
+
+RESULT:
+<pre style="border:1px solid gray;">
+<%=h @result.pretty_inspect %>
+</pre>
