@@ -8,7 +8,7 @@
   <%= link_to h("#{label}"), :controller=>"users", :action=>"list_by_badge", :badge=>key %>
 <% end %>
 
-<h3>Tags(todo)</h3>
+<h3>Tags</h3>
 <% cache_util.get_tag_and_counts.each do |tag,count| %>
   <%= link_to h("#{tag}(#{count})"), :controller=>"users", :action=>"list_by_tag", :tag=>tag %>
 <% end %>

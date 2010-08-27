@@ -23,6 +23,6 @@ class CacheUtil
     @memcache ||= AppEngine::Memcache.new(:namespace=>"CacheUtil")
   end
   def memcache_for_tag_count
-    @memcache ||= AppEngine::Memcache.new(:namespace=>"CacheUtil:tag_count")
+    @memcache_for_tag_count ||= AppEngine::Memcache.new(:namespace=>"CacheUtil:tag_count")
   end
 end
